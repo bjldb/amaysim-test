@@ -35,21 +35,21 @@ This initial implementation sticks to the specified interface and may lack other
 
 1. Specification:
 
-cart = ShoppingCart.new(pricingRules)
-cart.add(item1)
-cart.add(item2, promo_code)
-cart.total
-cart.items
+* cart = ShoppingCart.new(pricingRules)
+* cart.add(item1)
+* cart.add(item2, promo_code)
+* cart.total
+* cart.items
 
 2. Implementation:
 
-public class ShoppingCart {
-	public ShoppingCart(PricingRules pricingRules) {...}
-	public void add(CatalogueProduct item) {...}
-	public void add(CatalogueProduct item, String promoCode) {...}
-	public Double total() {...}
-	public Map<CatalogueProduct,Integer> items() {...}
-}
+* public class ShoppingCart
+  - public ShoppingCart(PricingRules pricingRules) {...}
+  - public void add(CatalogueProduct item) {...}
+  - public void add(CatalogueProduct item, String promoCode) {...}
+  - public Double total() {...}
+  - public Map<CatalogueProduct,Integer> items() {...}
+
 
 3. Pricing Rules:
 
