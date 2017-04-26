@@ -9,25 +9,25 @@ In this new version we want to allow our customers to purchase multiple SIM card
 
 1. Catalogue
 
-	a. ult_small
-		- Name: Unlimited 1GB
-		- Price: $24.90
-	b. ult_medium
-		- Name: Unlimited 2GB
-		- Price: $29.90
-	c. ult_large
-		- Name: Unlimited 5GB
-		- Price: $44.90
-	d. 1gb
-		- Name: 1 GB Data-pack
-		- Price: $9.90
+  a. ult_small
+    - Name: Unlimited 1GB
+    - Price: $24.90
+  b. ult_medium
+    - Name: Unlimited 2GB
+    - Price: $29.90
+  c. ult_large
+    - Name: Unlimited 5GB
+    - Price: $44.90
+  d. 1gb
+    - Name: 1 GB Data-pack
+    - Price: $9.90
 
 2. Special Offers and Promotions
 
-	a. A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
-	b. The Unlimited 5GB Sim will have a bulk discount applied; whereby the price will drop to $39.90 each for the first month, if the customer buys more than 3.
-	c. We will bundle in a free 1 GB Data-pack free-of-charge with every Unlimited 2GB sold.
-	d. Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
+  a. A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
+  b. The Unlimited 5GB Sim will have a bulk discount applied; whereby the price will drop to $39.90 each for the first month, if the customer buys more than 3.
+  c. We will bundle in a free 1 GB Data-pack free-of-charge with every Unlimited 2GB sold.
+  d. Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
 
 B. Implementation
 
@@ -50,15 +50,16 @@ This initial implementation sticks to the specified interface and may lack other
   - public Double total() {...}
   - public Map<CatalogueProduct,Integer> items() {...}
 
-
 3. Pricing Rules:
 
-Pricing Rules are used to compute total price and modify cart based on bundling rules. 
-Pricing Rule instances are created independently and may be added to or excluded from the rule set independently as well.
-Pricing Rules are categorized as:
-	a. Bundling Rule - rules modifying cart based on bundling-related offers and promos
-	b. Computation Rule - rules modifying computation of prices based on offers and promos
-	c. Finalization Rules - rules modifying final cart total based on offers and promos 
+- Pricing Rules are used to compute total price and modify cart based on bundling rules. 
+- Pricing Rule instances are created independently and may be added to or excluded from the rule set independently as well.
+
+- Pricing Rules are categorized as:
+
+  a. Bundling Rule - rules modifying cart based on bundling-related offers and promos
+  b. Computation Rule - rules modifying computation of prices based on offers and promos
+  c. Finalization Rules - rules modifying final cart total based on offers and promos 
 
 C. Limitations
 
@@ -70,12 +71,9 @@ TESTING THIS PROJECT
 
 A. Pre-requisites
 
-1. Java (JDK 7 or higher, JDK 8 preferred) 
-	- Installation instructions found here: http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html
-2. Maven 
-	- Installation instructions found here: https://maven.apache.org/install.html 
-3. Git 
-	- Installation instructions found here: https://www.atlassian.com/git/tutorials/install-git
+1. Java (JDK 7 or higher, JDK 8 preferred) - Installation instructions found [here](http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html)
+2. Maven - Installation instructions found [here](https://maven.apache.org/install.html) 
+3. Git - Installation instructions found [here](https://www.atlassian.com/git/tutorials/install-git)
 	
 NOTE: In order to use command line for this project, make sure that environment variables Path, JAVA_HOME, M2_HOME, etc are configured correctly
 
