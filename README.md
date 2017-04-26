@@ -4,10 +4,11 @@ A. Description
 
 This project was created and submitted as a solution for the Amaysim Shopping Cart Exercise:
 
-Amaysim is rebuilding our shopping cart. 
+Amaysim is rebuilding our shopping cart.
 In this new version we want to allow our customers to purchase multiple SIM cards simultaneously. 
 
 1. Catalogue
+
 	a. ult_small
 		- Name: Unlimited 1GB
 		- Price: $24.90
