@@ -92,20 +92,19 @@ NOTE: In order to use command line for this project, make sure that environment 
  T E S T S
 -------------------------------------------------------
 Running com.amaysim.shoppingcart.ShoppingCartTest
-Scenario 4: Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
+Scenario 1: A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
 ==============================
 ITEMS ADDED:
 ==============================
-1 x Unlimited 1GB
-1 x 1 GB Data-pack
-'I<3AMAYSIM' Promo Applied
+3 x Unlimited 1GB
+1 x Unlimited 5GB
 ==============================
 RESULTING CART ITEMS:
 ==============================
-1 x Unlimited 1GB
-1 x 1 GB Data-pack
+3 x Unlimited 1GB
+1 x Unlimited 5GB
 ==============================
-CART TOTAL: $31.32
+CART TOTAL: $94.70
 ==============================
 
 Scenario 2: The Unlimited 5GB Sim will have a bulk discount applied; whereby the price will drop to $39.90 each for the first month, if the customer buys more than 3.
@@ -139,19 +138,20 @@ RESULTING CART ITEMS:
 CART TOTAL: $84.70
 ==============================
 
-Scenario 1: A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
+Scenario 4: Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
 ==============================
 ITEMS ADDED:
 ==============================
-3 x Unlimited 1GB
-1 x Unlimited 5GB
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
+'I<3AMAYSIM' Promo Applied
 ==============================
 RESULTING CART ITEMS:
 ==============================
-3 x Unlimited 1GB
-1 x Unlimited 5GB
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
 ==============================
-CART TOTAL: $94.70
+CART TOTAL: $31.32
 ==============================
 
 Scenario 5: All 1 GB Data-pack paired with any ordered Unlimited 2GB are free.
@@ -204,7 +204,37 @@ RESULTING CART ITEMS:
 CART TOTAL: $34.80
 ==============================
 
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 sec
+Scenario 8: No Offers or Promotions
+==============================
+ITEMS ADDED:
+==============================
+3 x Unlimited 1GB
+2 x Unlimited 2GB
+4 x Unlimited 5GB
+2 x 1 GB Data-pack
+==============================
+RESULTING CART ITEMS:
+==============================
+3 x Unlimited 1GB
+2 x Unlimited 2GB
+4 x Unlimited 5GB
+2 x 1 GB Data-pack
+==============================
+CART TOTAL: $333.90
+==============================
+
+Scenario 9: Empty Cart
+==============================
+ITEMS ADDED:
+==============================
+==============================
+RESULTING CART ITEMS:
+==============================
+==============================
+CART TOTAL: $0.00
+==============================
+
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 sec
 
 Results :
 
