@@ -9,7 +9,7 @@ import com.amaysim.shoppingcart.rules.PricingRules;
 
 public class ShoppingCartTest {
 
-	private PricingRules getPricingRules() {
+	private PricingRules getSpecifiedPricingRules() {
 		PricingRules rules = new PricingRules();
 		rules.addRule(PricingRuleFactory.getRuleForCode("Unli2GBBundle"));
 		rules.addRule(PricingRuleFactory.getRuleForCode("Unli1GBDeal"));
@@ -17,10 +17,15 @@ public class ShoppingCartTest {
 		return rules;
 	}
 	
+	private PricingRules getEmptyPricingRules() {
+		PricingRules rules = new PricingRules();
+		return rules;
+	}
+	
 	@Test
 	public void Test_Scenario_1_ThreeForTwoForUnli1GB() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ULT_SMALL);
@@ -40,7 +45,7 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_2_PriceDropForUnli5GBForPurchaseMoreThan3() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ULT_SMALL);
@@ -62,7 +67,7 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_3_Unordered1GBDataPackAppearOnCartAsFree() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ULT_MEDIUM);
@@ -82,7 +87,7 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_4_PromoApplied() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ONE_GB,"I<3AMAYSIM");
@@ -100,7 +105,7 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_5_Paired1GBDataPackFree() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ULT_MEDIUM);
@@ -120,7 +125,7 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_6_PayOnlyUnpaired1GBDataPack() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
 		cart.add(CatalogueProduct.ULT_MEDIUM);
@@ -141,10 +146,10 @@ public class ShoppingCartTest {
 	@Test
 	public void Test_Scenario_7_PromoNotExisting() {
 		
-		ShoppingCart cart = new ShoppingCart(this.getPricingRules());
+		ShoppingCart cart = new ShoppingCart(this.getSpecifiedPricingRules());
 		
 		cart.add(CatalogueProduct.ULT_SMALL);
-		cart.add(CatalogueProduct.ONE_GB,"I<3AMAYSING"); // promo code not existing
+		cart.add(CatalogueProduct.ONE_GB,"I<3AMAYSING"); // promo code not existing, no discount
 		
 		System.out.println("Scenario 7: Promo Code not existing.");
 		System.out.println(cart);
@@ -156,6 +161,47 @@ public class ShoppingCartTest {
 		
 	}
 
-
+	@Test
+	public void Test_Scenario_8_NoOffersPromotions() {
+		
+		ShoppingCart cart = new ShoppingCart(this.getEmptyPricingRules());
+		
+		cart.add(CatalogueProduct.ULT_SMALL);
+		cart.add(CatalogueProduct.ULT_SMALL);
+		cart.add(CatalogueProduct.ULT_SMALL); // Not free for 3 for 2, no promo
+		cart.add(CatalogueProduct.ULT_MEDIUM);
+		cart.add(CatalogueProduct.ULT_MEDIUM);
+		cart.add(CatalogueProduct.ULT_LARGE); // Not 39.90, no promo
+		cart.add(CatalogueProduct.ULT_LARGE); // Not 39.90, no promo
+		cart.add(CatalogueProduct.ULT_LARGE); // Not 39.90, no promo
+		cart.add(CatalogueProduct.ULT_LARGE); // Not 39.90, no promo
+		cart.add(CatalogueProduct.ONE_GB); // Not free, no promo
+		cart.add(CatalogueProduct.ONE_GB); // Not free, no promo
+		
+		System.out.println("Scenario 8: No Offers or Promotions");
+		System.out.println(cart);
+		
+		// Default Pricing Rule in effect
+		Assert.assertEquals((Double) 333.9, cart.total(), 2);
+		
+		Assert.assertEquals((Integer) 3, cart.items().get(CatalogueProduct.ULT_SMALL));
+		Assert.assertEquals((Integer) 2, cart.items().get(CatalogueProduct.ULT_MEDIUM));
+		Assert.assertEquals((Integer) 4, cart.items().get(CatalogueProduct.ULT_LARGE));
+		Assert.assertEquals((Integer) 2, cart.items().get(CatalogueProduct.ONE_GB));
+		
+	}
+	
+	@Test
+	public void Test_Scenario_9_EmptyCart() {
+		
+		ShoppingCart cart = new ShoppingCart(this.getEmptyPricingRules());
+		
+		System.out.println("Scenario 9: Empty Cart");
+		System.out.println(cart);
+		
+		Assert.assertEquals((Double) 0.0, cart.total(), 2);
+		
+		Assert.assertTrue(cart.items().isEmpty());
+	}
 
 }
