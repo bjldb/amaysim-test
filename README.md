@@ -86,7 +86,139 @@ NOTE: In order to use command line for this project, make sure that environment 
   - $ git clone https://github.com/bjldb/amaysim-test.git
 ### 2. Run Maven Test
   - $ mvn clean test
+  - Sample output:
+```
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.amaysim.shoppingcart.ShoppingCartTest
+Scenario 4: Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
+==============================
+ITEMS ADDED:
+==============================
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
+'I<3AMAYSIM' Promo Applied
+==============================
+RESULTING CART ITEMS:
+==============================
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
+==============================
+CART TOTAL: $31.32
+==============================
 
+Scenario 2: The Unlimited 5GB Sim will have a bulk discount applied; whereby the price will drop to $39.90 each for the first month, if the customer buys more than 3.
+==============================
+ITEMS ADDED:
+==============================
+2 x Unlimited 1GB
+4 x Unlimited 5GB
+==============================
+RESULTING CART ITEMS:
+==============================
+2 x Unlimited 1GB
+4 x Unlimited 5GB
+==============================
+CART TOTAL: $209.40
+==============================
+
+Scenario 3: We will bundle in a free 1 GB Data-pack free-of-charge with every Unlimited 2GB sold.
+==============================
+ITEMS ADDED:
+==============================
+1 x Unlimited 1GB
+2 x Unlimited 2GB
+==============================
+RESULTING CART ITEMS:
+==============================
+1 x Unlimited 1GB
+2 x Unlimited 2GB
+2 x 1 GB Data-pack
+==============================
+CART TOTAL: $84.70
+==============================
+
+Scenario 1: A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
+==============================
+ITEMS ADDED:
+==============================
+3 x Unlimited 1GB
+1 x Unlimited 5GB
+==============================
+RESULTING CART ITEMS:
+==============================
+3 x Unlimited 1GB
+1 x Unlimited 5GB
+==============================
+CART TOTAL: $94.70
+==============================
+
+Scenario 5: All 1 GB Data-pack paired with any ordered Unlimited 2GB are free.
+==============================
+ITEMS ADDED:
+==============================
+1 x Unlimited 1GB
+1 x Unlimited 2GB
+1 x 1 GB Data-pack
+==============================
+RESULTING CART ITEMS:
+==============================
+1 x Unlimited 1GB
+1 x Unlimited 2GB
+1 x 1 GB Data-pack
+==============================
+CART TOTAL: $54.80
+==============================
+
+Scenario 6: Pay only for 1 GB Data-pack not paired with any ordered Unlimited 2GB.
+==============================
+ITEMS ADDED:
+==============================
+1 x Unlimited 1GB
+1 x Unlimited 2GB
+2 x 1 GB Data-pack
+==============================
+RESULTING CART ITEMS:
+==============================
+1 x Unlimited 1GB
+1 x Unlimited 2GB
+2 x 1 GB Data-pack
+==============================
+CART TOTAL: $64.70
+==============================
+
+Scenario 7: Promo Code not existing.
+==============================
+ITEMS ADDED:
+==============================
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
+'I<3AMAYSING' Promo Applied
+==============================
+RESULTING CART ITEMS:
+==============================
+1 x Unlimited 1GB
+1 x 1 GB Data-pack
+==============================
+CART TOTAL: $34.80
+==============================
+
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 sec
+
+Results :
+
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6.067 s
+[INFO] Finished at: 2017-04-26T12:43:39+08:00
+[INFO] Final Memory: 13M/32M
+[INFO] ------------------------------------------------------------------------
+```
+  
 # ISSUES REGARDING THIS PROJECT
 
 - Kindly contact me via bjl.deborja@yahoo.com.
