@@ -57,9 +57,9 @@ This initial implementation sticks to the specified interface and may lack other
 
 - Pricing Rules are categorized as:
 
-  a. Bundling Rule - rules modifying cart based on bundling-related offers and promos
-  b. Computation Rule - rules modifying computation of prices based on offers and promos
-  c. Finalization Rules - rules modifying final cart total based on offers and promos 
+  * Bundling Rule - rules modifying cart based on bundling-related offers and promos
+  * Computation Rule - rules modifying computation of prices based on offers and promos
+  * Finalization Rules - rules modifying final cart total based on offers and promos 
 
 ## C. Limitations
 
