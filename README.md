@@ -11,6 +11,7 @@ A. Pre-requisites:
 	- Installation instructions found here: https://maven.apache.org/install.html 
 3. Git 
 	- Installation instructions found here: https://www.atlassian.com/git/tutorials/install-git
+	
 NOTE: In order to use command line for this project, make sure that environment variables Path, JAVA_HOME, M2_HOME, etc are configured correctly
 
 B. Running the tests (In your command line or bash (e.g. GitBash))
