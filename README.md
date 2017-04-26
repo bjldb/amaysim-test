@@ -9,18 +9,18 @@ In this new version we want to allow our customers to purchase multiple SIM card
 
 ### 1. Catalogue
 
-  * ult_small
-    - Name: Unlimited 1GB
-    - Price: $24.90
-  * ult_medium
-    - Name: Unlimited 2GB
-    - Price: $29.90
-  * ult_large
-    - Name: Unlimited 5GB
-    - Price: $44.90
-  * 1gb
-    - Name: 1 GB Data-pack
-    - Price: $9.90
+  * **ULT_SMALL**
+    - **Name:** Unlimited 1GB
+    - *vPrice:** $24.90
+  * **ULT_MEDIUM**
+    - **Name:** Unlimited 2GB
+    - **Price:** $29.90
+  * **ULT_LARGE**
+    - **Name:** Unlimited 5GB
+    - **Price:** $44.90
+  * **1GB**
+    - **Name:** 1 GB Data-pack
+    - **Price:** $9.90
 
 ### 2. Special Offers and Promotions
 
