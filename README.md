@@ -238,7 +238,7 @@ Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 sec
 
 Results :
 
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
