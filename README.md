@@ -1,8 +1,8 @@
+This project was created and submitted as a solution for the Amaysim Shopping Cart Exercise.
+
 # PROJECT CONTENT
 
-## A. Description
-
-This project was created and submitted as a solution for the Amaysim Shopping Cart Exercise:
+## A. Exercise Specification
 
 Amaysim is rebuilding our shopping cart.
 In this new version we want to allow our customers to purchase multiple SIM cards simultaneously. 
@@ -11,7 +11,7 @@ In this new version we want to allow our customers to purchase multiple SIM card
 
   * **ULT_SMALL**
     - **Name:** Unlimited 1GB
-    - *vPrice:** $24.90
+    - **Price:** $24.90
   * **ULT_MEDIUM**
     - **Name:** Unlimited 2GB
     - **Price:** $29.90
@@ -83,9 +83,9 @@ NOTE: In order to use command line for this project, make sure that environment 
 ## B. Running the tests (Command Line or Bash (e.g. GitBash))
 
 ### 1. Clone this project
-	- $ git clone https://github.com/bjldb/amaysim-test.git
+  - $ git clone https://github.com/bjldb/amaysim-test.git
 ### 2. Run Maven Test
-	- $ mvn clean test
+  - $ mvn clean test
 
 # ISSUES REGARDING THIS PROJECT
 
