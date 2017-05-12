@@ -85,6 +85,7 @@ NOTE: In order to use command line for this project, make sure that environment 
 ### 1. Clone this project
   - $ git clone https://github.com/bjldb/amaysim-test.git
 ### 2. Move to the project directory (amaysim-test) and run maven test
+  - $ cd amaysim-test
   - $ mvn clean test
   - Sample output:
 ```
