@@ -1,9 +1,8 @@
-package com.amaysim.shoppingcart.rules.computation;
+package com.amaysim.shoppingcart.base.rules;
 
 import java.util.Map;
 
-import com.amaysim.shoppingcart.catalogue.CatalogueProduct;
-import com.amaysim.shoppingcart.rules.PricingRule;
+import com.amaysim.shoppingcart.base.catalogue.Catalogue;
 
 /**
  * This abstract class represents a variant of the pricing rule which involves computing cart total based on specific offers or promotions
@@ -24,6 +23,6 @@ public abstract class ComputationRule extends PricingRule {
 	 * @param currentCart current cart products not yet included in the computation
 	 * @return running cart total after the pricing rule is applied
 	 */
-	public abstract Double updateTotalAndCart(Double currentTotal, Map<CatalogueProduct,Integer> currentCart);
+	public abstract Double updateTotalAndCart(Double currentTotal, Map<String,Integer> currentCart, Catalogue catalogue);
 
 }

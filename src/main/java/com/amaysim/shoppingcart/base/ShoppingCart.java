@@ -1,39 +1,42 @@
-package com.amaysim.shoppingcart;
+package com.amaysim.shoppingcart.base;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.amaysim.shoppingcart.catalogue.CatalogueProduct;
-import com.amaysim.shoppingcart.rules.PricingRules;
+import com.amaysim.shoppingcart.base.catalogue.Catalogue;
+import com.amaysim.shoppingcart.base.catalogue.CatalogueProduct;
+import com.amaysim.shoppingcart.base.rules.PricingRules;
 
 /**
  * This class represents a generic shopping cart with customizable pricing rules
  */
 public class ShoppingCart {
 	
-	private Map<CatalogueProduct,Integer> items;
+	private Map<String,Integer> items;
 	
 	private Set<String> promoCodes;
 	private PricingRules pricingRules;
-	
+	private Catalogue catalogue;
+
 	/**
 	 * Constructor
 	 * @param pricingRules pricing rules for this shopping cart instance
 	 */
 	public ShoppingCart(PricingRules pricingRules) {
-		this.items = new EnumMap<CatalogueProduct,Integer>(CatalogueProduct.class);
+		this.items = new HashMap<String,Integer>();
 		this.promoCodes = new HashSet<>();
 		
 		this.pricingRules = pricingRules;
+		this.catalogue = pricingRules.getCatalogue();
 	}
 	
 	/**
 	 * Adds a product from the catalogue into the shopping cart
 	 * @param item product to add to cart
 	 */
-	public void add(CatalogueProduct item) {
+	public void add(String item) {
 		if(items.containsKey(item)) {
 			items.put(item, items.get(item) + 1);
 		}
@@ -47,7 +50,7 @@ public class ShoppingCart {
 	 * @param item item product to add to cart
 	 * @param promoCode promo code to add
 	 */
-	public void add(CatalogueProduct item, String promoCode) {	
+	public void add(String item, String promoCode) {	
 		this.add(item);
 		promoCodes.add(promoCode);
 	}
@@ -64,7 +67,7 @@ public class ShoppingCart {
 	 * Generates a map of products and equivalent quantity after applying all pricing rules and promo codes
 	 * @return the generated map of products and quantity
 	 */
-	public Map<CatalogueProduct,Integer> items() {
+	public Map<String,Integer> items() {
 		return pricingRules.getFullyItemizedCart(this.items);
 	}
 	
@@ -74,17 +77,18 @@ public class ShoppingCart {
 	@Override
 	public String toString() {
 		
-		Map<CatalogueProduct,Integer> addedItems = this.items;
-		Map<CatalogueProduct,Integer> cartItems = this.items();
+		Map<String,Integer> addedItems = this.items;
+		Map<String,Integer> cartItems = this.items();
 		
 		StringBuilder cartStringBuilder = new StringBuilder("==============================\n");
 		cartStringBuilder.append("ITEMS ADDED:\n");
 		cartStringBuilder.append("==============================\n");
 		
 		// Added Items
-		for(CatalogueProduct product : addedItems.keySet()) {
-			cartStringBuilder.append(addedItems.get(product)).append(" x ");
-			cartStringBuilder.append(product.productName()).append("\n");
+		for(String productName : addedItems.keySet()) {
+			CatalogueProduct product = this.catalogue.getProduct(productName);
+			cartStringBuilder.append(addedItems.get(productName)).append(" x ");
+			cartStringBuilder.append(product.getProductName()).append("\n");
 		}
 		
 		// Promo Codes
@@ -97,9 +101,10 @@ public class ShoppingCart {
 		cartStringBuilder.append("==============================\n");
 		
 		// Final Cart Content
-		for(CatalogueProduct product : cartItems.keySet()) {
-			cartStringBuilder.append(cartItems.get(product)).append(" x ");
-			cartStringBuilder.append(product.productName()).append("\n");
+		for(String productName : cartItems.keySet()) {
+			CatalogueProduct product = this.catalogue.getProduct(productName);
+			cartStringBuilder.append(cartItems.get(productName)).append(" x ");
+			cartStringBuilder.append(product.getProductName()).append("\n");
 		}
 		
 		// Cart Total  
