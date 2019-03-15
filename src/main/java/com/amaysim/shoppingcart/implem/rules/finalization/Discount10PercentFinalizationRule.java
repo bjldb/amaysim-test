@@ -1,4 +1,4 @@
-package com.amaysim.shoppingcart.rules.finalization;
+package com.amaysim.shoppingcart.implem.rules.finalization;
 
 /**
  * This class represents represents the finalization rule:

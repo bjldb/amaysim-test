@@ -1,9 +1,6 @@
-package com.amaysim.shoppingcart.rules.bundling;
+package com.amaysim.shoppingcart.base.rules;
 
 import java.util.Map;
-
-import com.amaysim.shoppingcart.catalogue.CatalogueProduct;
-import com.amaysim.shoppingcart.rules.PricingRule;
 
 /**
  * This abstract class represents a variant of the pricing rule which involves product bundling based on specific offers or promotions
@@ -21,12 +18,12 @@ public abstract class BundlingRule extends PricingRule {
 	 * Updates cart content in preparation for computation (removes free-of-charge items)
 	 * @param cartProducts map of products to be updated
 	 */
-	public abstract void updateCartForPricing(Map<CatalogueProduct,Integer> cartProducts);
+	public abstract void updateCartForPricing(Map<String,Integer> cartProducts);
 	
 	/**
 	 * Updates cart content in preparation for full itemization (includes free-of-charge items)
 	 * @param cartProducts map of products to be updated
 	 */
-	public abstract void updateCartForItemization(Map<CatalogueProduct,Integer> cartProducts);
+	public abstract void updateCartForItemization(Map<String,Integer> cartProducts);
 	
 }

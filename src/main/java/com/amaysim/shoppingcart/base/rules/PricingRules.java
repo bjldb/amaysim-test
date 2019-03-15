@@ -1,31 +1,38 @@
-package com.amaysim.shoppingcart.rules;
+package com.amaysim.shoppingcart.base.rules;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.amaysim.shoppingcart.catalogue.CatalogueProduct;
-import com.amaysim.shoppingcart.rules.bundling.BundlingRule;
-import com.amaysim.shoppingcart.rules.computation.ComputationRule;
-import com.amaysim.shoppingcart.rules.computation.DefaultComputationRule;
-import com.amaysim.shoppingcart.rules.finalization.FinalizationRule;
+import com.amaysim.shoppingcart.base.catalogue.Catalogue;
+import com.amaysim.shoppingcart.base.catalogue.ICatalogueProvider;
+import com.amaysim.shoppingcart.implem.rules.computation.DefaultComputationRule;
+import com.amaysim.shoppingcart.implem.rules.finalization.FinalizationRule;
 
 /**
  * This class represents the set of pricing rules applicable to shopping cart items
  */
 public class PricingRules {
 	
+	private Catalogue catalogue;
 	private Map<PricingRule.RuleType,HashSet<PricingRule>> ruleSets;
 	
 	/**
 	 * Constructor
+	 * @throws Exception 
 	 */
-	public PricingRules() {
+	public PricingRules(ICatalogueProvider provider) throws Exception {
+		this.catalogue = provider.provideCatalogue();
 		this.ruleSets = new EnumMap<>(PricingRule.RuleType.class);
 		for(PricingRule.RuleType ruleType : PricingRule.RuleType.values()) {
 			ruleSets.put(ruleType, new HashSet<>());
 		}
+	}
+	
+	public Catalogue getCatalogue() {
+		return this.catalogue;
 	}
 	
 	/**
@@ -44,9 +51,9 @@ public class PricingRules {
 	 * @param promoCodes promo codes to be applied
 	 * @return total computed price
 	 */
-	public Double computeTotalPrice(final Map<CatalogueProduct,Integer> cartProducts, Set<String> promoCodes) {
+	public Double computeTotalPrice(final Map<String,Integer> cartProducts, Set<String> promoCodes) {
 		
-		Map<CatalogueProduct,Integer> currentCart = new EnumMap<>(cartProducts);
+		Map<String,Integer> currentCart = new HashMap<>(cartProducts);
 		
 		// 0. update rules with promo codes
 		this.updateRulesForPromoCodes(promoCodes);
@@ -68,8 +75,8 @@ public class PricingRules {
 	 * @param cartProducts cart product content
 	 * @return the fully itemized cart after applying bundling rules
 	 */
-	public Map<CatalogueProduct,Integer> getFullyItemizedCart(final Map<CatalogueProduct,Integer> cartProducts) {
-		Map<CatalogueProduct,Integer> itemsWithBundles = new EnumMap<>(cartProducts);
+	public Map<String,Integer> getFullyItemizedCart(final Map<String,Integer> cartProducts) {
+		Map<String,Integer> itemsWithBundles = new HashMap<>(cartProducts);
 		this.executeBundlingRulesForItemization(itemsWithBundles);
 		return itemsWithBundles;
 	}
@@ -91,7 +98,7 @@ public class PricingRules {
 	 * Executes and applies all bundling pricing rules for pricing on the cart product content
 	 * @param currentCart cart product content
 	 */
-	private void executeBundlingRulesForPricing(Map<CatalogueProduct, Integer> currentCart) {
+	private void executeBundlingRulesForPricing(Map<String, Integer> currentCart) {
 		for( PricingRule rule : ruleSets.get(PricingRule.RuleType.BUNDLING) ) {
 			((BundlingRule)rule).updateCartForPricing(currentCart);
 		}
@@ -101,7 +108,7 @@ public class PricingRules {
 	 * Executes and applies all bundling pricing rules for itemization on the cart product content
 	 * @param currentCart cart product content
 	 */
-	private void executeBundlingRulesForItemization(Map<CatalogueProduct, Integer> currentCart) {
+	private void executeBundlingRulesForItemization(Map<String, Integer> currentCart) {
 		for( PricingRule rule : ruleSets.get(PricingRule.RuleType.BUNDLING) ) {
 			((BundlingRule)rule).updateCartForItemization(currentCart);
 		}
@@ -112,12 +119,12 @@ public class PricingRules {
 	 * @param currentCart cart product content
 	 * @return the running cart total
 	 */
-	private Double executeComputationRules(Map<CatalogueProduct, Integer> currentCart) {
+	private Double executeComputationRules(Map<String, Integer> currentCart) {
 		Double total = 0.0;
 		for( PricingRule rule : ruleSets.get(PricingRule.RuleType.COMPUTATION) ) {
-			total = ((ComputationRule)rule).updateTotalAndCart(total, currentCart);
+			total = ((ComputationRule)rule).updateTotalAndCart(total, currentCart, this.catalogue);
 		}
-		total = new DefaultComputationRule().updateTotalAndCart(total, currentCart);
+		total = new DefaultComputationRule().updateTotalAndCart(total, currentCart, this.catalogue);
 		return total;
 	}
 	

@@ -1,6 +1,6 @@
-package com.amaysim.shoppingcart.rules.finalization;
+package com.amaysim.shoppingcart.implem.rules.finalization;
 
-import com.amaysim.shoppingcart.rules.PricingRule;
+import com.amaysim.shoppingcart.base.rules.PricingRule;
 
 /**
  * This abstract class represents a variant of the pricing rule which involves modifications of total price after computation on cart items  

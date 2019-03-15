@@ -1,9 +1,13 @@
-package com.amaysim.shoppingcart.rules;
+package com.amaysim.shoppingcart.base.rules;
+
+import com.amaysim.shoppingcart.base.catalogue.Catalogue;
 
 /**
  * This abstract rule represents pricing rules that may be applied to cart items
  */
 public abstract class PricingRule {
+	
+	private Catalogue catalogue;
 	
 	/**
 	 * This enum represents the types of pricing rules that may used over cart items

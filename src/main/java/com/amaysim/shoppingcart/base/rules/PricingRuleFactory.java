@@ -1,12 +1,12 @@
-package com.amaysim.shoppingcart.rules;
+package com.amaysim.shoppingcart.base.rules;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.amaysim.shoppingcart.rules.bundling.Unli2GBundlingRule;
-import com.amaysim.shoppingcart.rules.computation.Unli1GBComputationRule;
-import com.amaysim.shoppingcart.rules.computation.Unli5GBComputationRule;
-import com.amaysim.shoppingcart.rules.finalization.Discount10PercentFinalizationRule;
+import com.amaysim.shoppingcart.implem.rules.bundling.Unli2GBundlingRule;
+import com.amaysim.shoppingcart.implem.rules.computation.Unli1GBComputationRule;
+import com.amaysim.shoppingcart.implem.rules.computation.Unli5GBComputationRule;
+import com.amaysim.shoppingcart.implem.rules.finalization.Discount10PercentFinalizationRule;
 
 /**
  * This class represents the factory of applicable pricing rules for the shopping cart
